@@ -1,0 +1,53 @@
+{
+	"name": "AzureSqlTable2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDbservice1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Heart_Rate_Variability",
+				"type": "varchar"
+			},
+			{
+				"name": "Body_Temperature",
+				"type": "varchar"
+			},
+			{
+				"name": "Movement_During_Sleep",
+				"type": "varchar"
+			},
+			{
+				"name": "Sleep_Duration_Hours",
+				"type": "varchar"
+			},
+			{
+				"name": "Sleep_Quality_Score",
+				"type": "varchar"
+			},
+			{
+				"name": "Caffeine_Intake_mg",
+				"type": "varchar"
+			},
+			{
+				"name": "Stress_Level",
+				"type": "varchar"
+			},
+			{
+				"name": "Bedtime_Consistency",
+				"type": "varchar"
+			},
+			{
+				"name": "Light_Exposure_hours",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Health_table3"
+		}
+	}
+}
