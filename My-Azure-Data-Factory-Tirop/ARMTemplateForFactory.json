@@ -342,7 +342,7 @@
 				],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "Health_table2"
+					"table": "Health_table3"
 				}
 			},
 			"dependsOn": [
