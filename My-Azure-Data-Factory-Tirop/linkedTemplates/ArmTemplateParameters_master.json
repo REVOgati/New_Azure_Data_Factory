@@ -8,6 +8,18 @@
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
+		"AzureSqlDbservice1_password": {
+			"value": ""
+		},
+		"AzureSqlDbservice1_properties_typeProperties_server": {
+			"value": "tiropazureserver1.database.windows.net"
+		},
+		"AzureSqlDbservice1_properties_typeProperties_database": {
+			"value": "tiropazuredb1"
+		},
+		"AzureSqlDbservice1_properties_typeProperties_userName": {
+			"value": "tirop"
+		},
 		"containerUri": {
 			"value": ""
 		},
