@@ -48,7 +48,6 @@
 									"physicalType": "float"
 								}
 							},
-							null,
 							{
 								"source": {
 									"name": "Body_Temperature",
