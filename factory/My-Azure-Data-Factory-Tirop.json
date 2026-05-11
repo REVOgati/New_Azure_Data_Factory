@@ -1,0 +1,15 @@
+{
+	"name": "My-Azure-Data-Factory-Tirop",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Enabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "151fa813-d6ad-4dd8-bf58-149216c65847",
+		"tenantId": "794f8ac1-0c12-4ba7-b96c-4c879e6c1b8d"
+	}
+}
