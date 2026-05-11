@@ -10,7 +10,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "Health_data"
+			"table": "Health_table"
 		}
 	}
 }
