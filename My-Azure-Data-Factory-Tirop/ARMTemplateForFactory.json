@@ -148,6 +148,116 @@
 							"enableStaging": false,
 							"translator": {
 								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Heart_Rate_Variability",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Heart_Rate_Variability",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Body_Temperature",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Body_Temperature",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Movement_During_Sleep",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Movement_during_Sleep",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Sleep_Duration_Hours",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Sleep_Duration_Hours",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Sleep_Quality_Score",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Sleep_Quality_Score",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Caffeine_Intake_mg",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Caffeine_Intake_mg",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Stress_Level",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Stress_Level",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Bedtime_Consistency",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Bedtime_Consistency",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Light_Exposure_hours",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Light_Exposure_hours",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									}
+								],
 								"typeConversion": true,
 								"typeConversionSettings": {
 									"allowDataTruncation": true,
@@ -192,10 +302,47 @@
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
-				"schema": [],
+				"schema": [
+					{
+						"name": "Heart_Rate_V",
+						"type": "varchar"
+					},
+					{
+						"name": "Body_Temperature",
+						"type": "varchar"
+					},
+					{
+						"name": "Movement_During_Sleep",
+						"type": "varchar"
+					},
+					{
+						"name": "Sleep_Duration_Hours",
+						"type": "varchar"
+					},
+					{
+						"name": "Sleep_Quality_Score",
+						"type": "varchar"
+					},
+					{
+						"name": "Caffeine_Intake_mg",
+						"type": "varchar"
+					},
+					{
+						"name": "Stress_Level",
+						"type": "varchar"
+					},
+					{
+						"name": "Bedtime_Consistency",
+						"type": "varchar"
+					},
+					{
+						"name": "Light_Exposure_hours",
+						"type": "varchar"
+					}
+				],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "Health_table"
+					"table": "Health_table2"
 				}
 			},
 			"dependsOn": [
