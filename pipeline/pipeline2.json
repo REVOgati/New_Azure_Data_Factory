@@ -44,8 +44,8 @@
 								},
 								"sink": {
 									"name": "Heart_Rate_Variability",
-									"type": "Double",
-									"physicalType": "float"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
@@ -56,8 +56,8 @@
 								},
 								"sink": {
 									"name": "Body_Temperature",
-									"type": "Double",
-									"physicalType": "float"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
@@ -67,9 +67,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Movement_during_Sleep",
-									"type": "Double",
-									"physicalType": "float"
+									"name": "Movement_During_Sleep",
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
@@ -80,8 +80,8 @@
 								},
 								"sink": {
 									"name": "Sleep_Duration_Hours",
-									"type": "Double",
-									"physicalType": "float"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
@@ -92,8 +92,8 @@
 								},
 								"sink": {
 									"name": "Sleep_Quality_Score",
-									"type": "Double",
-									"physicalType": "float"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
@@ -104,8 +104,8 @@
 								},
 								"sink": {
 									"name": "Caffeine_Intake_mg",
-									"type": "Double",
-									"physicalType": "float"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
@@ -116,8 +116,8 @@
 								},
 								"sink": {
 									"name": "Stress_Level",
-									"type": "Double",
-									"physicalType": "float"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
@@ -128,8 +128,8 @@
 								},
 								"sink": {
 									"name": "Bedtime_Consistency",
-									"type": "Double",
-									"physicalType": "float"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
@@ -140,8 +140,8 @@
 								},
 								"sink": {
 									"name": "Light_Exposure_hours",
-									"type": "Double",
-									"physicalType": "float"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							}
 						],
