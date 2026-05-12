@@ -797,7 +797,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -809,7 +809,7 @@
 				],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"blobPathBeginsWith": "/input/blobs/",
+					"blobPathBeginsWith": "/testcontainer/blobs/",
 					"ignoreEmptyBlobs": true,
 					"scope": "[parameters('trigger-excel to json_properties_typeProperties_scope')]",
 					"events": [
