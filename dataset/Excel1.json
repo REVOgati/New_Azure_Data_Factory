@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"container": "input"
+				"fileName": "Debt Service_ Total, Domestic & External (1).xlsx",
+				"container": "testcontainer"
 			}
 		},
 		"schema": []
