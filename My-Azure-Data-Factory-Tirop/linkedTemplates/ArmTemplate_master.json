@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
 		},
+		"AzureBlobStorage2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
+		},
 		"AzureSqlDbservice1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlDbservice1'"
@@ -26,6 +30,10 @@
 		"AzureSqlDbservice1_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "tirop"
+		},
+		"trigger-excel to json_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/c26f2263-7f95-49db-b72e-cc00fcbcbe3b/resourceGroups/Project_one/providers/Microsoft.Storage/storageAccounts/tiropstorage1"
 		},
 		"containerUri": {
 			"type": "string",
@@ -57,6 +65,9 @@
 					"AzureBlobStorage1_connectionString": {
 						"value": "[parameters('AzureBlobStorage1_connectionString')]"
 					},
+					"AzureBlobStorage2_connectionString": {
+						"value": "[parameters('AzureBlobStorage2_connectionString')]"
+					},
 					"AzureSqlDbservice1_password": {
 						"value": "[parameters('AzureSqlDbservice1_password')]"
 					},
@@ -68,6 +79,9 @@
 					},
 					"AzureSqlDbservice1_properties_typeProperties_userName": {
 						"value": "[parameters('AzureSqlDbservice1_properties_typeProperties_userName')]"
+					},
+					"trigger-excel to json_properties_typeProperties_scope": {
+						"value": "[parameters('trigger-excel to json_properties_typeProperties_scope')]"
 					}
 				}
 			},
