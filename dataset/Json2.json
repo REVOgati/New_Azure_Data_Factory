@@ -1,0 +1,49 @@
+{
+	"name": "Json2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "output"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Heart_Rate_Variability": {
+					"type": "string"
+				},
+				"Body_Temperature": {
+					"type": "string"
+				},
+				"Movement_During_Sleep": {
+					"type": "string"
+				},
+				"Sleep_Duration_Hours": {
+					"type": "string"
+				},
+				"Sleep_Quality_Score": {
+					"type": "string"
+				},
+				"Caffeine_Intake_mg": {
+					"type": "string"
+				},
+				"Stress_Level": {
+					"type": "string"
+				},
+				"Bedtime_Consistency": {
+					"type": "string"
+				},
+				"Light_Exposure_hours": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

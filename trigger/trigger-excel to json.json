@@ -1,0 +1,24 @@
+{
+	"name": "trigger-excel to json",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EventTriggerOne",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/input/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/c26f2263-7f95-49db-b72e-cc00fcbcbe3b/resourceGroups/Project_one/providers/Microsoft.Storage/storageAccounts/tiropstorage1",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
