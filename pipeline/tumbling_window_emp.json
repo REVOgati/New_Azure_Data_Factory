@@ -15,10 +15,71 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"enableStaging": false
-				}
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[emplo_filt]",
+						"storedProcedureParameters": {
+							"end_date": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.pEnddate",
+									"type": "Expression"
+								}
+							},
+							"start_date": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.pStartdate",
+									"type": "Expression"
+								}
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureSqlTable3",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Employee1",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
+		"parameters": {
+			"pStartdate": {
+				"type": "string"
+			},
+			"pEnddate": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }

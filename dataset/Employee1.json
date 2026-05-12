@@ -1,0 +1,59 @@
+{
+	"name": "Employee1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Heart_Rate_Variability",
+				"type": "String"
+			},
+			{
+				"name": "Body_Temperature",
+				"type": "String"
+			},
+			{
+				"name": "Movement_During_Sleep",
+				"type": "String"
+			},
+			{
+				"name": "Sleep_Duration_Hours",
+				"type": "String"
+			},
+			{
+				"name": "Sleep_Quality_Score",
+				"type": "String"
+			},
+			{
+				"name": "Caffeine_Intake_mg",
+				"type": "String"
+			},
+			{
+				"name": "Stress_Level",
+				"type": "String"
+			},
+			{
+				"name": "Bedtime_Consistency",
+				"type": "String"
+			},
+			{
+				"name": "Light_Exposure_hours",
+				"type": "String"
+			}
+		]
+	}
+}
