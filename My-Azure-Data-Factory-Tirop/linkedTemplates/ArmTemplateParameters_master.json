@@ -26,6 +26,12 @@
 		"trigger-excel to json_properties_typeProperties_scope": {
 			"value": "/subscriptions/c26f2263-7f95-49db-b72e-cc00fcbcbe3b/resourceGroups/Project_one/providers/Microsoft.Storage/storageAccounts/tiropstorage1"
 		},
+		"trigger-tumbling_properties_pipeline_parameters_pStartdate": {
+			"value": "@trigger().output.start_date()"
+		},
+		"trigger-tumbling_properties_pipeline_parameters_pEnddate": {
+			"value": "@trigger().output.end.date()"
+		},
 		"containerUri": {
 			"value": ""
 		},

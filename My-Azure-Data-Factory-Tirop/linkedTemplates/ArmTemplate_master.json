@@ -35,6 +35,14 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/c26f2263-7f95-49db-b72e-cc00fcbcbe3b/resourceGroups/Project_one/providers/Microsoft.Storage/storageAccounts/tiropstorage1"
 		},
+		"trigger-tumbling_properties_pipeline_parameters_pStartdate": {
+			"type": "string",
+			"defaultValue": "@trigger().output.start_date()"
+		},
+		"trigger-tumbling_properties_pipeline_parameters_pEnddate": {
+			"type": "string",
+			"defaultValue": "@trigger().output.end.date()"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -82,6 +90,12 @@
 					},
 					"trigger-excel to json_properties_typeProperties_scope": {
 						"value": "[parameters('trigger-excel to json_properties_typeProperties_scope')]"
+					},
+					"trigger-tumbling_properties_pipeline_parameters_pStartdate": {
+						"value": "[parameters('trigger-tumbling_properties_pipeline_parameters_pStartdate')]"
+					},
+					"trigger-tumbling_properties_pipeline_parameters_pEnddate": {
+						"value": "[parameters('trigger-tumbling_properties_pipeline_parameters_pEnddate')]"
 					}
 				}
 			},
