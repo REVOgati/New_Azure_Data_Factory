@@ -1,0 +1,15 @@
+{
+	"name": "AzureSqlTable6",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "parameterized_link_one",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"db_name": "tiropazuredb1"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
