@@ -1,0 +1,23 @@
+{
+	"name": "dataset8",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "link8",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"table_8_name": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": {
+				"value": "@dataset().table_8_name",
+				"type": "Expression"
+			}
+		}
+	}
+}
