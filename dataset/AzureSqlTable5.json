@@ -7,41 +7,10 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [
-			{
-				"name": "employee_id",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "employee_name",
-				"type": "varchar"
-			},
-			{
-				"name": "department_id",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "position",
-				"type": "varchar"
-			},
-			{
-				"name": "salary",
-				"type": "decimal",
-				"precision": 10,
-				"scale": 2
-			},
-			{
-				"name": "sales_time",
-				"type": "datetime",
-				"precision": 23,
-				"scale": 3
-			}
-		],
+		"schema": [],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "Employee_254"
+			"table": "emp_updated"
 		}
 	}
 }
