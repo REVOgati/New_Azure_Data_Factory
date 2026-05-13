@@ -3,18 +3,7 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "empl_254_pipeline",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"penddate": "@trigger().outputs.windowEndtime",
-					"pstartdate": "@trigger().outputs.windowstarttime"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
