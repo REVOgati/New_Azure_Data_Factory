@@ -1,0 +1,29 @@
+{
+	"name": "empl_254_trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "empl_254_pipeline",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"penddate": "@trigger().outputs.windowEndtime",
+					"pstartdate": "@trigger().outputs.windowstarttime"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 24,
+				"startTime": "2026-05-01T00:00:00",
+				"endTime": "2026-05-08T00:00:00",
+				"timeZone": "E. Africa Standard Time"
+			}
+		}
+	}
+}
