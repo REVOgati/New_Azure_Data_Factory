@@ -19,11 +19,11 @@
 			"type": "string",
 			"defaultValue": "@trigger().output.end.date()"
 		},
-		"empl_254_trigger_properties_empl_254_pipeline_parameters_penddate": {
+		"empl_tumb_trigger_properties_pipeline_parameters_penddate": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowEndtime"
 		},
-		"empl_254_trigger_properties_empl_254_pipeline_parameters_pstartdate": {
+		"empl_tumb_trigger_properties_pipeline_parameters_pstartdate": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowstarttime"
 		}
@@ -32,6 +32,99 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/tumbling_window_emp')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[dbo].[emplo_filt]",
+								"storedProcedureParameters": {
+									"end_date": {
+										"type": "String",
+										"value": {
+											"value": "@pipeline().parameters.pEnddate",
+											"type": "Expression"
+										}
+									},
+									"start_date": {
+										"type": "String",
+										"value": {
+											"value": "@pipeline().parameters.pStartdate",
+											"type": "Expression"
+										}
+									}
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "AzureSqlTable3",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Employee1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"pStartdate": {
+						"type": "string"
+					},
+					"pEnddate": {
+						"type": "string"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/empl_254_pipeline')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -184,7 +277,9 @@
 					"dependsOn": []
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/tumbling_window_emp')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/trigger1')]",
@@ -216,33 +311,34 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/empl_254_trigger')]",
+			"name": "[concat(parameters('factoryName'), '/empl_tumb_trigger')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "empl_254_pipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"penddate": "[parameters('empl_254_trigger_properties_empl_254_pipeline_parameters_penddate')]",
-							"pstartdate": "[parameters('empl_254_trigger_properties_empl_254_pipeline_parameters_pstartdate')]"
-						}
+				"pipeline": {
+					"pipelineReference": {
+						"referenceName": "empl_254_pipeline",
+						"type": "PipelineReference"
+					},
+					"parameters": {
+						"penddate": "[parameters('empl_tumb_trigger_properties_pipeline_parameters_penddate')]",
+						"pstartdate": "[parameters('empl_tumb_trigger_properties_pipeline_parameters_pstartdate')]"
 					}
-				],
-				"type": "ScheduleTrigger",
+				},
+				"type": "TumblingWindowTrigger",
 				"typeProperties": {
-					"recurrence": {
-						"frequency": "Hour",
-						"interval": 24,
-						"startTime": "2026-05-01T00:00:00",
-						"endTime": "2026-05-08T00:00:00",
-						"timeZone": "E. Africa Standard Time"
-					}
+					"frequency": "Hour",
+					"interval": 24,
+					"startTime": "2026-05-01T00:00:00Z",
+					"endTime": "2026-05-08T00:00:00Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
 				}
 			},
 			"dependsOn": [

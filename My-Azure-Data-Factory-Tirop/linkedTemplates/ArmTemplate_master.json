@@ -59,11 +59,11 @@
 			"type": "string",
 			"defaultValue": "tirop"
 		},
-		"empl_254_trigger_properties_empl_254_pipeline_parameters_penddate": {
+		"empl_tumb_trigger_properties_pipeline_parameters_penddate": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowEndtime"
 		},
-		"empl_254_trigger_properties_empl_254_pipeline_parameters_pstartdate": {
+		"empl_tumb_trigger_properties_pipeline_parameters_pstartdate": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowstarttime"
 		},
@@ -151,11 +151,11 @@
 					"trigger-tumbling_properties_pipeline_parameters_pEnddate": {
 						"value": "[parameters('trigger-tumbling_properties_pipeline_parameters_pEnddate')]"
 					},
-					"empl_254_trigger_properties_empl_254_pipeline_parameters_penddate": {
-						"value": "[parameters('empl_254_trigger_properties_empl_254_pipeline_parameters_penddate')]"
+					"empl_tumb_trigger_properties_pipeline_parameters_penddate": {
+						"value": "[parameters('empl_tumb_trigger_properties_pipeline_parameters_penddate')]"
 					},
-					"empl_254_trigger_properties_empl_254_pipeline_parameters_pstartdate": {
-						"value": "[parameters('empl_254_trigger_properties_empl_254_pipeline_parameters_pstartdate')]"
+					"empl_tumb_trigger_properties_pipeline_parameters_pstartdate": {
+						"value": "[parameters('empl_tumb_trigger_properties_pipeline_parameters_pstartdate')]"
 					}
 				}
 			},

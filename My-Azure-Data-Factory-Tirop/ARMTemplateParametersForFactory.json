@@ -44,10 +44,10 @@
 		"empl_254_linking_properties_typeProperties_userName": {
 			"value": "tirop"
 		},
-		"empl_254_trigger_properties_empl_254_pipeline_parameters_penddate": {
+		"empl_tumb_trigger_properties_pipeline_parameters_penddate": {
 			"value": "@trigger().outputs.windowEndtime"
 		},
-		"empl_254_trigger_properties_empl_254_pipeline_parameters_pstartdate": {
+		"empl_tumb_trigger_properties_pipeline_parameters_pstartdate": {
 			"value": "@trigger().outputs.windowstarttime"
 		}
 	}

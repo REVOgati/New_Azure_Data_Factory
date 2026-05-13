@@ -59,11 +59,11 @@
 			"type": "string",
 			"defaultValue": "tirop"
 		},
-		"empl_254_trigger_properties_empl_254_pipeline_parameters_penddate": {
+		"empl_tumb_trigger_properties_pipeline_parameters_penddate": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowEndtime"
 		},
-		"empl_254_trigger_properties_empl_254_pipeline_parameters_pstartdate": {
+		"empl_tumb_trigger_properties_pipeline_parameters_pstartdate": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowstarttime"
 		}
@@ -1300,19 +1300,8 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "empl_254_pipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"penddate": "[parameters('empl_254_trigger_properties_empl_254_pipeline_parameters_penddate')]",
-							"pstartdate": "[parameters('empl_254_trigger_properties_empl_254_pipeline_parameters_pstartdate')]"
-						}
-					}
-				],
+				"runtimeState": "Stopped",
+				"pipelines": [],
 				"type": "ScheduleTrigger",
 				"typeProperties": {
 					"recurrence": {
@@ -1322,6 +1311,39 @@
 						"endTime": "2026-05-08T00:00:00",
 						"timeZone": "E. Africa Standard Time"
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/empl_tumb_trigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipeline": {
+					"pipelineReference": {
+						"referenceName": "empl_254_pipeline",
+						"type": "PipelineReference"
+					},
+					"parameters": {
+						"penddate": "[parameters('empl_tumb_trigger_properties_pipeline_parameters_penddate')]",
+						"pstartdate": "[parameters('empl_tumb_trigger_properties_pipeline_parameters_pstartdate')]"
+					}
+				},
+				"type": "TumblingWindowTrigger",
+				"typeProperties": {
+					"frequency": "Hour",
+					"interval": 24,
+					"startTime": "2026-05-01T00:00:00Z",
+					"endTime": "2026-05-08T00:00:00Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
 				}
 			},
 			"dependsOn": [
