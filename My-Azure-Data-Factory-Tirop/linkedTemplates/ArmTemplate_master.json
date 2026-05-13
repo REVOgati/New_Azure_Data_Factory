@@ -35,18 +35,6 @@
 			"type": "string",
 			"defaultValue": "tirop"
 		},
-		"trigger-excel to json_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/c26f2263-7f95-49db-b72e-cc00fcbcbe3b/resourceGroups/Project_one/providers/Microsoft.Storage/storageAccounts/tiropstorage1"
-		},
-		"trigger-tumbling_properties_pipeline_parameters_pStartdate": {
-			"type": "string",
-			"defaultValue": "@trigger().output.start_date()"
-		},
-		"trigger-tumbling_properties_pipeline_parameters_pEnddate": {
-			"type": "string",
-			"defaultValue": "@trigger().output.end.date()"
-		},
 		"empl_254_linking_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "tiropazureserver1.database.windows.net"
@@ -66,6 +54,18 @@
 		"empl_tumb_trigger_properties_pipeline_parameters_pstartdate": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowstarttime"
+		},
+		"trigger-excel to json_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/c26f2263-7f95-49db-b72e-cc00fcbcbe3b/resourceGroups/Project_one/providers/Microsoft.Storage/storageAccounts/tiropstorage1"
+		},
+		"trigger-tumbling_properties_pipeline_parameters_pStartdate": {
+			"type": "string",
+			"defaultValue": "@trigger().output.start_date()"
+		},
+		"trigger-tumbling_properties_pipeline_parameters_pEnddate": {
+			"type": "string",
+			"defaultValue": "@trigger().output.end.date()"
 		},
 		"containerUri": {
 			"type": "string",
@@ -142,6 +142,12 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"empl_tumb_trigger_properties_pipeline_parameters_penddate": {
+						"value": "[parameters('empl_tumb_trigger_properties_pipeline_parameters_penddate')]"
+					},
+					"empl_tumb_trigger_properties_pipeline_parameters_pstartdate": {
+						"value": "[parameters('empl_tumb_trigger_properties_pipeline_parameters_pstartdate')]"
+					},
 					"trigger-excel to json_properties_typeProperties_scope": {
 						"value": "[parameters('trigger-excel to json_properties_typeProperties_scope')]"
 					},
@@ -150,12 +156,6 @@
 					},
 					"trigger-tumbling_properties_pipeline_parameters_pEnddate": {
 						"value": "[parameters('trigger-tumbling_properties_pipeline_parameters_pEnddate')]"
-					},
-					"empl_tumb_trigger_properties_pipeline_parameters_penddate": {
-						"value": "[parameters('empl_tumb_trigger_properties_pipeline_parameters_penddate')]"
-					},
-					"empl_tumb_trigger_properties_pipeline_parameters_pstartdate": {
-						"value": "[parameters('empl_tumb_trigger_properties_pipeline_parameters_pstartdate')]"
 					}
 				}
 			},

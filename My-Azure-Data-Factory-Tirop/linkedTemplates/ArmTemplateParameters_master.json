@@ -26,15 +26,6 @@
 		"AzureSqlDbservice1_properties_typeProperties_userName": {
 			"value": "tirop"
 		},
-		"trigger-excel to json_properties_typeProperties_scope": {
-			"value": "/subscriptions/c26f2263-7f95-49db-b72e-cc00fcbcbe3b/resourceGroups/Project_one/providers/Microsoft.Storage/storageAccounts/tiropstorage1"
-		},
-		"trigger-tumbling_properties_pipeline_parameters_pStartdate": {
-			"value": "@trigger().output.start_date()"
-		},
-		"trigger-tumbling_properties_pipeline_parameters_pEnddate": {
-			"value": "@trigger().output.end.date()"
-		},
 		"empl_254_linking_properties_typeProperties_server": {
 			"value": "tiropazureserver1.database.windows.net"
 		},
@@ -49,6 +40,15 @@
 		},
 		"empl_tumb_trigger_properties_pipeline_parameters_pstartdate": {
 			"value": "@trigger().outputs.windowstarttime"
+		},
+		"trigger-excel to json_properties_typeProperties_scope": {
+			"value": "/subscriptions/c26f2263-7f95-49db-b72e-cc00fcbcbe3b/resourceGroups/Project_one/providers/Microsoft.Storage/storageAccounts/tiropstorage1"
+		},
+		"trigger-tumbling_properties_pipeline_parameters_pStartdate": {
+			"value": "@trigger().output.start_date()"
+		},
+		"trigger-tumbling_properties_pipeline_parameters_pEnddate": {
+			"value": "@trigger().output.end.date()"
 		},
 		"containerUri": {
 			"value": ""
