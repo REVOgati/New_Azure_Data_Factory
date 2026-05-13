@@ -1,0 +1,66 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable5",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "Department102employees"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter1"
+				},
+				{
+					"name": "sort1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          employee_id as integer,",
+				"          employee_name as string,",
+				"          department_id as integer,",
+				"          position as string,",
+				"          salary as decimal(10,2),",
+				"          sales_time as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source1 filter(department_id == 102) ~> filter1",
+				"filter1 sort(asc(salary, true),",
+				"     caseInsensitive: true) ~> sort1",
+				"sort1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Heart_Rate_Variability as string,",
+				"          Body_Temperature as string,",
+				"          Movement_During_Sleep as string,",
+				"          Sleep_Duration_Hours as string,",
+				"          Sleep_Quality_Score as string,",
+				"          Caffeine_Intake_mg as string,",
+				"          Stress_Level as string,",
+				"          Bedtime_Consistency as string,",
+				"          Light_Exposure_hours as string",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> Department102employees"
+			]
+		}
+	}
+}
