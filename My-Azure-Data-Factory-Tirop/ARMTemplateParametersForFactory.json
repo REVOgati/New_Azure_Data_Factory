@@ -14,6 +14,9 @@
 		"AzureSqlDbservice1_password": {
 			"value": ""
 		},
+		"empl_254_linking_password": {
+			"value": ""
+		},
 		"AzureSqlDbservice1_properties_typeProperties_server": {
 			"value": "tiropazureserver1.database.windows.net"
 		},
@@ -31,6 +34,21 @@
 		},
 		"trigger-tumbling_properties_pipeline_parameters_pEnddate": {
 			"value": "@trigger().output.end.date()"
+		},
+		"empl_254_linking_properties_typeProperties_server": {
+			"value": "tiropazureserver1.database.windows.net"
+		},
+		"empl_254_linking_properties_typeProperties_database": {
+			"value": "tiropazuredb1"
+		},
+		"empl_254_linking_properties_typeProperties_userName": {
+			"value": "tirop"
+		},
+		"empl_254_trigger_properties_empl_254_pipeline_parameters_penddate": {
+			"value": "@trigger().outputs.windowEndtime"
+		},
+		"empl_254_trigger_properties_empl_254_pipeline_parameters_pstartdate": {
+			"value": "@trigger().outputs.windowstarttime"
 		}
 	}
 }

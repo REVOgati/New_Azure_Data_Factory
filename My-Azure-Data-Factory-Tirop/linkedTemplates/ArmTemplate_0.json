@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlDbservice1'"
 		},
+		"empl_254_linking_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'empl_254_linking'"
+		},
 		"AzureSqlDbservice1_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "tiropazureserver1.database.windows.net"
@@ -31,17 +35,17 @@
 			"type": "string",
 			"defaultValue": "tirop"
 		},
-		"trigger-excel to json_properties_typeProperties_scope": {
+		"empl_254_linking_properties_typeProperties_server": {
 			"type": "string",
-			"defaultValue": "/subscriptions/c26f2263-7f95-49db-b72e-cc00fcbcbe3b/resourceGroups/Project_one/providers/Microsoft.Storage/storageAccounts/tiropstorage1"
+			"defaultValue": "tiropazureserver1.database.windows.net"
 		},
-		"trigger-tumbling_properties_pipeline_parameters_pStartdate": {
+		"empl_254_linking_properties_typeProperties_database": {
 			"type": "string",
-			"defaultValue": "@trigger().output.start_date()"
+			"defaultValue": "tiropazuredb1"
 		},
-		"trigger-tumbling_properties_pipeline_parameters_pEnddate": {
+		"empl_254_linking_properties_typeProperties_userName": {
 			"type": "string",
-			"defaultValue": "@trigger().output.end.date()"
+			"defaultValue": "tirop"
 		}
 	},
 	"variables": {
@@ -92,6 +96,28 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('AzureSqlDbservice1_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/empl_254_linking')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('empl_254_linking_properties_typeProperties_server')]",
+					"database": "[parameters('empl_254_linking_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('empl_254_linking_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('empl_254_linking_password')]"
 					}
 				}
 			},
@@ -214,6 +240,58 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDbservice1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "employee_id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "employee_name",
+						"type": "varchar"
+					},
+					{
+						"name": "department_id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "position",
+						"type": "varchar"
+					},
+					{
+						"name": "salary",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
+						"name": "created_at",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Employee"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDbservice1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -276,6 +354,70 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Employee1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "output"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Heart_Rate_Variability",
+						"type": "String"
+					},
+					{
+						"name": "Body_Temperature",
+						"type": "String"
+					},
+					{
+						"name": "Movement_During_Sleep",
+						"type": "String"
+					},
+					{
+						"name": "Sleep_Duration_Hours",
+						"type": "String"
+					},
+					{
+						"name": "Sleep_Quality_Score",
+						"type": "String"
+					},
+					{
+						"name": "Caffeine_Intake_mg",
+						"type": "String"
+					},
+					{
+						"name": "Stress_Level",
+						"type": "String"
+					},
+					{
+						"name": "Bedtime_Consistency",
+						"type": "String"
+					},
+					{
+						"name": "Light_Exposure_hours",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
 			]
 		},
 		{
@@ -408,7 +550,25 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Employee1')]",
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable4')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "empl_254_linking",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/empl_254_linking')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -421,106 +581,17 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"container": "output"
+						"container": "testcontainer"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
-				"schema": [
-					{
-						"name": "Heart_Rate_Variability",
-						"type": "String"
-					},
-					{
-						"name": "Body_Temperature",
-						"type": "String"
-					},
-					{
-						"name": "Movement_During_Sleep",
-						"type": "String"
-					},
-					{
-						"name": "Sleep_Duration_Hours",
-						"type": "String"
-					},
-					{
-						"name": "Sleep_Quality_Score",
-						"type": "String"
-					},
-					{
-						"name": "Caffeine_Intake_mg",
-						"type": "String"
-					},
-					{
-						"name": "Stress_Level",
-						"type": "String"
-					},
-					{
-						"name": "Bedtime_Consistency",
-						"type": "String"
-					},
-					{
-						"name": "Light_Exposure_hours",
-						"type": "String"
-					}
-				]
+				"schema": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlTable3')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDbservice1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "employee_id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "employee_name",
-						"type": "varchar"
-					},
-					{
-						"name": "department_id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "position",
-						"type": "varchar"
-					},
-					{
-						"name": "salary",
-						"type": "decimal",
-						"precision": 10,
-						"scale": 2
-					},
-					{
-						"name": "created_at",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Employee"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDbservice1')]"
 			]
 		},
 		{
@@ -1009,102 +1080,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AzureSqlTable3')]",
 				"[concat(variables('factoryId'), '/datasets/Employee1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/trigger-excel to json')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "EventTriggerOne",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/testcontainer/blobs/",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('trigger-excel to json_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/EventTriggerOne')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/trigger1')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pipeline3",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Minute",
-						"interval": 5,
-						"startTime": "2026-05-12T06:42:00",
-						"endTime": "2026-05-13T07:42:00",
-						"timeZone": "E. Africa Standard Time"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pipeline3')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/trigger-tumbling')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipeline": {
-					"pipelineReference": {
-						"referenceName": "tumbling_window_emp",
-						"type": "PipelineReference"
-					},
-					"parameters": {
-						"pStartdate": "[parameters('trigger-tumbling_properties_pipeline_parameters_pStartdate')]",
-						"pEnddate": "[parameters('trigger-tumbling_properties_pipeline_parameters_pEnddate')]"
-					}
-				},
-				"type": "TumblingWindowTrigger",
-				"typeProperties": {
-					"frequency": "Hour",
-					"interval": 24,
-					"startTime": "2026-05-02T00:00:00Z",
-					"endTime": "2026-05-06T00:00:00Z",
-					"delay": "00:00:00",
-					"maxConcurrency": 50,
-					"retryPolicy": {
-						"intervalInSeconds": 30
-					},
-					"dependsOn": []
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/tumbling_window_emp')]"
 			]
 		}
 	]

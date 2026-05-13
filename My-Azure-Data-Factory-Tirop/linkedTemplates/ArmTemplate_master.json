@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlDbservice1'"
 		},
+		"empl_254_linking_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'empl_254_linking'"
+		},
 		"AzureSqlDbservice1_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "tiropazureserver1.database.windows.net"
@@ -42,6 +46,26 @@
 		"trigger-tumbling_properties_pipeline_parameters_pEnddate": {
 			"type": "string",
 			"defaultValue": "@trigger().output.end.date()"
+		},
+		"empl_254_linking_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "tiropazureserver1.database.windows.net"
+		},
+		"empl_254_linking_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "tiropazuredb1"
+		},
+		"empl_254_linking_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "tirop"
+		},
+		"empl_254_trigger_properties_empl_254_pipeline_parameters_penddate": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowEndtime"
+		},
+		"empl_254_trigger_properties_empl_254_pipeline_parameters_pstartdate": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowstarttime"
 		},
 		"containerUri": {
 			"type": "string",
@@ -79,6 +103,9 @@
 					"AzureSqlDbservice1_password": {
 						"value": "[parameters('AzureSqlDbservice1_password')]"
 					},
+					"empl_254_linking_password": {
+						"value": "[parameters('empl_254_linking_password')]"
+					},
 					"AzureSqlDbservice1_properties_typeProperties_server": {
 						"value": "[parameters('AzureSqlDbservice1_properties_typeProperties_server')]"
 					},
@@ -88,6 +115,33 @@
 					"AzureSqlDbservice1_properties_typeProperties_userName": {
 						"value": "[parameters('AzureSqlDbservice1_properties_typeProperties_userName')]"
 					},
+					"empl_254_linking_properties_typeProperties_server": {
+						"value": "[parameters('empl_254_linking_properties_typeProperties_server')]"
+					},
+					"empl_254_linking_properties_typeProperties_database": {
+						"value": "[parameters('empl_254_linking_properties_typeProperties_database')]"
+					},
+					"empl_254_linking_properties_typeProperties_userName": {
+						"value": "[parameters('empl_254_linking_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "My-Azure-Data-Factory-Tirop_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
 					"trigger-excel to json_properties_typeProperties_scope": {
 						"value": "[parameters('trigger-excel to json_properties_typeProperties_scope')]"
 					},
@@ -96,10 +150,18 @@
 					},
 					"trigger-tumbling_properties_pipeline_parameters_pEnddate": {
 						"value": "[parameters('trigger-tumbling_properties_pipeline_parameters_pEnddate')]"
+					},
+					"empl_254_trigger_properties_empl_254_pipeline_parameters_penddate": {
+						"value": "[parameters('empl_254_trigger_properties_empl_254_pipeline_parameters_penddate')]"
+					},
+					"empl_254_trigger_properties_empl_254_pipeline_parameters_pstartdate": {
+						"value": "[parameters('empl_254_trigger_properties_empl_254_pipeline_parameters_pstartdate')]"
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'My-Azure-Data-Factory-Tirop_ArmTemplate_0')]"
+			]
 		}
 	]
 }
