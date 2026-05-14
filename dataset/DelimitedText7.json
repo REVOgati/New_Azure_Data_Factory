@@ -1,0 +1,103 @@
+{
+	"name": "DelimitedText7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Year",
+				"type": "String"
+			},
+			{
+				"name": "total_ordinary_revenue",
+				"type": "String"
+			},
+			{
+				"name": "total_expenditure",
+				"type": "String"
+			},
+			{
+				"name": "fiscal_deficit",
+				"type": "String"
+			},
+			{
+				"name": "total_public_debt",
+				"type": "String"
+			},
+			{
+				"name": "domestic_debt",
+				"type": "String"
+			},
+			{
+				"name": "external_debt",
+				"type": "String"
+			},
+			{
+				"name": "total_debt_service",
+				"type": "String"
+			},
+			{
+				"name": "domestic_debt_service",
+				"type": "String"
+			},
+			{
+				"name": "external_debt_service",
+				"type": "String"
+			},
+			{
+				"name": "nominal_gdp",
+				"type": "String"
+			},
+			{
+				"name": "total_public_debt_as_a_pct_of_gdp",
+				"type": "String"
+			},
+			{
+				"name": "total_debt_service_as_a_pct_of_gdp",
+				"type": "String"
+			},
+			{
+				"name": "total_debt_service_as_a_pct_of_revenue",
+				"type": "String"
+			},
+			{
+				"name": "ordinary_revenue_as_a_pct_of_gdp",
+				"type": "String"
+			},
+			{
+				"name": "fiscal_deficit_as_a_pct_of_gdp",
+				"type": "String"
+			},
+			{
+				"name": "education",
+				"type": "String"
+			},
+			{
+				"name": "health",
+				"type": "String"
+			},
+			{
+				"name": "social_protection",
+				"type": "String"
+			},
+			{
+				"name": "water_and_sanitation",
+				"type": "String"
+			}
+		]
+	}
+}
