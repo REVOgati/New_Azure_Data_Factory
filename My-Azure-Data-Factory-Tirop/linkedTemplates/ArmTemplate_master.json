@@ -23,6 +23,26 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'empl_254_linking'"
 		},
+		"link8_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'link8'"
+		},
+		"output_paramterized_link1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'output_paramterized_link1'"
+		},
+		"parameterized_link_one_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'parameterized_link_one'"
+		},
+		"pipeline_8_linker_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'pipeline_8_linker'"
+		},
+		"trial9_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'trial9'"
+		},
 		"AzureSqlDbservice1_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "tiropazureserver1.database.windows.net"
@@ -44,6 +64,54 @@
 			"defaultValue": "tiropazuredb1"
 		},
 		"empl_254_linking_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "tirop"
+		},
+		"link8_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "tiropazureserver1.database.windows.net"
+		},
+		"link8_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().db_8_name}"
+		},
+		"link8_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "tirop"
+		},
+		"parameterized_link_one_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "tiropazureserver1.database.windows.net"
+		},
+		"parameterized_link_one_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().db_name}"
+		},
+		"parameterized_link_one_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "tirop"
+		},
+		"pipeline_8_linker_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "tiropazureserver1.database.windows.net"
+		},
+		"pipeline_8_linker_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().link_db_name}"
+		},
+		"pipeline_8_linker_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "tirop"
+		},
+		"trial9_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "tiropazureserver1.database.windows.net"
+		},
+		"trial9_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().mylink_db}"
+		},
+		"trial9_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "tirop"
 		},
@@ -106,6 +174,21 @@
 					"empl_254_linking_password": {
 						"value": "[parameters('empl_254_linking_password')]"
 					},
+					"link8_password": {
+						"value": "[parameters('link8_password')]"
+					},
+					"output_paramterized_link1_connectionString": {
+						"value": "[parameters('output_paramterized_link1_connectionString')]"
+					},
+					"parameterized_link_one_password": {
+						"value": "[parameters('parameterized_link_one_password')]"
+					},
+					"pipeline_8_linker_password": {
+						"value": "[parameters('pipeline_8_linker_password')]"
+					},
+					"trial9_password": {
+						"value": "[parameters('trial9_password')]"
+					},
 					"AzureSqlDbservice1_properties_typeProperties_server": {
 						"value": "[parameters('AzureSqlDbservice1_properties_typeProperties_server')]"
 					},
@@ -123,6 +206,42 @@
 					},
 					"empl_254_linking_properties_typeProperties_userName": {
 						"value": "[parameters('empl_254_linking_properties_typeProperties_userName')]"
+					},
+					"link8_properties_typeProperties_server": {
+						"value": "[parameters('link8_properties_typeProperties_server')]"
+					},
+					"link8_properties_typeProperties_database": {
+						"value": "[parameters('link8_properties_typeProperties_database')]"
+					},
+					"link8_properties_typeProperties_userName": {
+						"value": "[parameters('link8_properties_typeProperties_userName')]"
+					},
+					"parameterized_link_one_properties_typeProperties_server": {
+						"value": "[parameters('parameterized_link_one_properties_typeProperties_server')]"
+					},
+					"parameterized_link_one_properties_typeProperties_database": {
+						"value": "[parameters('parameterized_link_one_properties_typeProperties_database')]"
+					},
+					"parameterized_link_one_properties_typeProperties_userName": {
+						"value": "[parameters('parameterized_link_one_properties_typeProperties_userName')]"
+					},
+					"pipeline_8_linker_properties_typeProperties_server": {
+						"value": "[parameters('pipeline_8_linker_properties_typeProperties_server')]"
+					},
+					"pipeline_8_linker_properties_typeProperties_database": {
+						"value": "[parameters('pipeline_8_linker_properties_typeProperties_database')]"
+					},
+					"pipeline_8_linker_properties_typeProperties_userName": {
+						"value": "[parameters('pipeline_8_linker_properties_typeProperties_userName')]"
+					},
+					"trial9_properties_typeProperties_server": {
+						"value": "[parameters('trial9_properties_typeProperties_server')]"
+					},
+					"trial9_properties_typeProperties_database": {
+						"value": "[parameters('trial9_properties_typeProperties_database')]"
+					},
+					"trial9_properties_typeProperties_userName": {
+						"value": "[parameters('trial9_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -136,6 +255,26 @@
 				"mode": "incremental",
 				"templateLink": {
 					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'My-Azure-Data-Factory-Tirop_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "My-Azure-Data-Factory-Tirop_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
@@ -160,7 +299,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'My-Azure-Data-Factory-Tirop_ArmTemplate_0')]"
+				"[resourceId('Microsoft.Resources/deployments', 'My-Azure-Data-Factory-Tirop_ArmTemplate_1')]"
 			]
 		}
 	]

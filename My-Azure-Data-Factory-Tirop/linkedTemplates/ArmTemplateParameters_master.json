@@ -17,6 +17,21 @@
 		"empl_254_linking_password": {
 			"value": ""
 		},
+		"link8_password": {
+			"value": ""
+		},
+		"output_paramterized_link1_connectionString": {
+			"value": ""
+		},
+		"parameterized_link_one_password": {
+			"value": ""
+		},
+		"pipeline_8_linker_password": {
+			"value": ""
+		},
+		"trial9_password": {
+			"value": ""
+		},
 		"AzureSqlDbservice1_properties_typeProperties_server": {
 			"value": "tiropazureserver1.database.windows.net"
 		},
@@ -33,6 +48,42 @@
 			"value": "tiropazuredb1"
 		},
 		"empl_254_linking_properties_typeProperties_userName": {
+			"value": "tirop"
+		},
+		"link8_properties_typeProperties_server": {
+			"value": "tiropazureserver1.database.windows.net"
+		},
+		"link8_properties_typeProperties_database": {
+			"value": "@{linkedService().db_8_name}"
+		},
+		"link8_properties_typeProperties_userName": {
+			"value": "tirop"
+		},
+		"parameterized_link_one_properties_typeProperties_server": {
+			"value": "tiropazureserver1.database.windows.net"
+		},
+		"parameterized_link_one_properties_typeProperties_database": {
+			"value": "@{linkedService().db_name}"
+		},
+		"parameterized_link_one_properties_typeProperties_userName": {
+			"value": "tirop"
+		},
+		"pipeline_8_linker_properties_typeProperties_server": {
+			"value": "tiropazureserver1.database.windows.net"
+		},
+		"pipeline_8_linker_properties_typeProperties_database": {
+			"value": "@{linkedService().link_db_name}"
+		},
+		"pipeline_8_linker_properties_typeProperties_userName": {
+			"value": "tirop"
+		},
+		"trial9_properties_typeProperties_server": {
+			"value": "tiropazureserver1.database.windows.net"
+		},
+		"trial9_properties_typeProperties_database": {
+			"value": "@{linkedService().mylink_db}"
+		},
+		"trial9_properties_typeProperties_userName": {
 			"value": "tirop"
 		},
 		"empl_tumb_trigger_properties_pipeline_parameters_penddate": {
