@@ -1,0 +1,89 @@
+{
+	"name": "validation_pipeline12",
+	"properties": {
+		"activities": [
+			{
+				"name": "Validation1",
+				"type": "Validation",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DelimitedText11",
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": {
+								"value": "@pipeline().parameters.pipefilename",
+								"type": "Expression"
+							}
+						}
+					},
+					"timeout": "0.00:00:30",
+					"sleep": 10
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Validation1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "success1",
+					"value": "File exists"
+				}
+			},
+			{
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Validation1",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Fail1",
+					"value": "File non-existant"
+				}
+			}
+		],
+		"parameters": {
+			"pipefilename": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"success": {
+				"type": "Boolean"
+			},
+			"Failure": {
+				"type": "Boolean"
+			},
+			"success1": {
+				"type": "String"
+			},
+			"Fail1": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
