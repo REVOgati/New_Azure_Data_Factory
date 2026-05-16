@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
 		},
+		"AzureSqlDatabase1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase1'"
+		},
 		"AzureSqlDbservice1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlDbservice1'"
@@ -42,6 +46,18 @@
 		"trial9_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'trial9'"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "tiropazureserver1.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "tiropazuredb1"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "tirop"
 		},
 		"AzureSqlDbservice1_properties_typeProperties_server": {
 			"type": "string",
@@ -168,6 +184,9 @@
 					"AzureBlobStorage2_connectionString": {
 						"value": "[parameters('AzureBlobStorage2_connectionString')]"
 					},
+					"AzureSqlDatabase1_password": {
+						"value": "[parameters('AzureSqlDatabase1_password')]"
+					},
 					"AzureSqlDbservice1_password": {
 						"value": "[parameters('AzureSqlDbservice1_password')]"
 					},
@@ -188,6 +207,15 @@
 					},
 					"trial9_password": {
 						"value": "[parameters('trial9_password')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]"
 					},
 					"AzureSqlDbservice1_properties_typeProperties_server": {
 						"value": "[parameters('AzureSqlDbservice1_properties_typeProperties_server')]"
@@ -280,6 +308,26 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'My-Azure-Data-Factory-Tirop_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "My-Azure-Data-Factory-Tirop_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"empl_tumb_trigger_properties_pipeline_parameters_penddate": {
 						"value": "[parameters('empl_tumb_trigger_properties_pipeline_parameters_penddate')]"
@@ -299,7 +347,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'My-Azure-Data-Factory-Tirop_ArmTemplate_1')]"
+				"[resourceId('Microsoft.Resources/deployments', 'My-Azure-Data-Factory-Tirop_ArmTemplate_2')]"
 			]
 		}
 	]
